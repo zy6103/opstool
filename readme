@@ -14,4 +14,6 @@ git push -u origin master
 #############
 git push -u opstool master
 
+git pull opstool master
+
 git clone https://github.com/zy6103/opstool.git
