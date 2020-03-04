@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+
+{% block page-title %}
+    <h1 class="page-header text-overflow">自动巡检</h1>
+{% endblock %}
+{% block page-content %}
+    <div class="col-lg-6 col-md-offset-3">
+{#        <div class="panel">#}
+            <div class="btn-group btn-group-sm">
+                <button class="btn btn-success btn-active-success" onclick="select_all()">全选</button>
+                <button class="btn btn-success btn-active-success" onclick="select_diff()">反选</button>
+                <button class="btn btn-success btn-active-success" onclick="select_cannel()">取消</button>
+                <button class="btn btn-success btn-active-success" onclick="check_run()">开始检测</button>
+            </div>
+{#        </div>#}
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">项目列表</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group" id="program_host">
+                    {% for program in request.user.project_tab.select_related %}
+
+                        <li class="list-group-item">
+                            <input type="checkbox" onclick="SelectGroup(this)">
+                            <a href="#" onclick="HostListDisplayToggle(this)">{{ program.name }}</a>
+                            <span class="badge badge-primary">{{ program.hosttab_set.count }}</span>
+                        </li>
+                        <ul class="hide">
+                        {% for host in program.hosttab_set.all %}
+                            <li><input type="checkbox" value="{{ host.id }}">{{ host.ip_addr }}@{{ host.login_user }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </ul>
+{#                <div class="list-group bord-no">#}
+{#                {% for program in request.user.project_tab.select_related %}#}
+{#                    <a onclick="HostListDisplayToggle(this)" class="list-group-item" href="#">#}
+{#                        <input type="checkbox" onclick="SelectGroup(this)">{{ program.name }}#}
+{#                        <span class="badge badge-primary">{{ program.hosttab_set.count }}</span>#}
+{#                    </a>#}
+{#                    <ol class="hide">#}
+{#                        {% for host in program.hosttab_set.all %}#}
+{#                            <li><input type="checkbox" select_host="true" value="{{ host.id }}">({{ host }})@{{ host.login_user }}</li>#}
+{#                        {% endfor %}#}
+{#                    </ol>#}
+{#                {% endfor %}#}
+{#            </div>#}
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    function HostListDisplayToggle(ele) {
+        $(ele).parent().next().toggleClass('hide')
+    }
+    function SelectGroup(ele) {
+        ($(ele).parent().next().find('input').prop('checked',$(ele).prop('checked')))
+    }
+    function select_all() {
+        $('#program_host').find('input').prop('checked',true)
+    }
+    function select_cannel() {
+        $('#program_host').find('input').prop('checked',false)
+    }
+    function select_diff() {
+        $('#program_host').find('input').each(function () {
+            if($(this).prop('checked') == true){
+                $(this).prop('checked',false)
+            }else{
+                $(this).prop('checked',true)
+            }
+        })
+    }
+    function check_run() {
+        select_host_id = [];
+        $('#program_host').find('input').each(function () {
+            if($(this).prop('checked') == true && !isNaN($(this).val()))
+                select_host_id.push($(this).val());
+        });
+        if(select_host_id.length == 0){
+            alert('必须选择主机');
+            return false
+        }
+        $.post("{% url 'start_check' %}",
+                {'task_data':JSON.stringify(select_host_id),'csrfmiddlewaretoken':"{{ csrf_token }}"},
+                function (callback) {
+                    console.log(callback)
+                }
+        
+        )
+    }
+</script>
+{% endblock %}

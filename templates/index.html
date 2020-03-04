@@ -1,0 +1,501 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div id="container" class="effect mainnav-lg .mainnav-fixed .navbar-fixed .footer-fixed">
+
+		<!--NAVBAR-->
+		<!--===================================================-->
+		<header id="navbar">
+			<div id="navbar-container" class="boxed">
+
+				<!--Brand logo & name-->
+				<!--================================-->
+				<div class="navbar-header">
+					<a href="index.html" class="navbar-brand">
+						<img src="/statics/img/logo.png" alt="Nifty Logo" class="brand-icon">
+						<div class="brand-title">
+							<span class="brand-text">OPS管理系统</span>
+						</div>
+					</a>
+				</div>
+				<!--================================-->
+				<!--End brand logo & name-->
+
+
+				<!--Navbar Dropdown-->
+				<!--================================-->
+				<div class="navbar-content clearfix">
+					<ul class="nav navbar-top-links pull-left">
+
+						<!--Navigation toogle button-->
+						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+						<li class="tgl-menu-btn">
+							<a class="mainnav-toggle" href="#">
+								<i class="fa fa-navicon fa-lg"></i>
+							</a>
+						</li>
+						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+						<!--End Navigation toogle button-->
+
+
+						<!--Messages Dropdown-->
+						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+{#						<li class="dropdown">#}
+{#							<a href="#" class="btn-link text-dark box-block">#}
+{#								巡检系统#}
+{#							</a>#}
+{#                            <a href="#" class="btn-link text-dark box-block">#}
+{#                                性能检测#}
+{#                            </a>#}
+{#                            <a href="#" class="btn-link text-dark box-block">#}
+{#                                其他一级选项#}
+{#                            </a>#}
+{#						</li>#}
+					</ul>
+					<ul class="nav navbar-top-links pull-right">
+						<!--User dropdown-->
+						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+						<li id="dropdown-user" class="dropdown">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+								<span class="pull-right">
+									<img class="img-circle img-user media-object" src="/statics/img/av1.png" alt="Profile Picture">
+								</span>
+								<div class="username hidden-xs">{{ request.user.name }}</div>
+							</a>
+
+
+							<div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow panel-default">
+
+								<!-- User dropdown menu -->
+								<ul class="head-list">
+									<li>
+										<a href="#">
+											<i class="fa fa-user fa-fw fa-lg"></i> Profile
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="badge badge-danger pull-right">9</span>
+											<i class="fa fa-envelope fa-fw fa-lg"></i> Messages
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="label label-success pull-right">New</span>
+											<i class="fa fa-gear fa-fw fa-lg"></i> Settings
+										</a>
+									</li>
+								</ul>
+
+								<!-- Dropdown footer -->
+								<div class="pad-all text-right">
+									<a href="{% url 'logout' %}" class="btn btn-primary">
+										<i class="fa fa-sign-out fa-fw"></i> Logout
+									</a>
+								</div>
+							</div>
+						</li>
+						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+						<!--End user dropdown-->
+
+					</ul>
+				</div>
+				<!--================================-->
+				<!--End Navbar Dropdown-->
+
+			</div>
+		</header>
+		<!--===================================================-->
+		<!--END NAVBAR-->
+
+		<div class="boxed">
+
+			<!--CONTENT CONTAINER-->
+			<!--===================================================-->
+			<div id="content-container">
+
+				<!--Page Title-->
+				<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+				<div id="page-title">
+					<h1 class="page-header text-overflow">{% block page-title %}Page Title{% endblock %}</h1>
+
+					<!--Searchbox-->
+					<div class="searchbox">
+						<div class="input-group custom-search-form">
+							<input type="text" class="form-control" placeholder="Search..">
+							<span class="input-group-btn">
+								<button class="text-muted" type="button"><i class="fa fa-search"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+				<!--End page title-->
+
+
+				<!--Breadcrumb-->
+				<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+{#				<ol class="breadcrumb">#}
+{#					<li><a href="#">Home</a></li>#}
+{#					<li><a href="#">Library</a></li>#}
+{#					<li class="active">Data</li>#}
+{#				</ol>#}
+				<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+				<!--End breadcrumb-->
+
+
+
+
+				<!--Page content-->
+				<!--===================================================-->
+                <div id="page-content">
+                    {% block page-content %}
+                        your page content
+                    {% endblock %}
+                </div>
+
+				<!--===================================================-->
+				<!--End page content-->
+
+
+			</div>
+			<!--===================================================-->
+			<!--END CONTENT CONTAINER-->
+
+
+
+			<!--MAIN NAVIGATION-->
+			<!--===================================================-->
+			<nav id="mainnav-container">
+				<div id="mainnav">
+
+					<!--Shortcut buttons-->
+					<!--================================-->
+					<div id="mainnav-shortcut">
+						<ul class="list-unstyled">
+							<li class="col-xs-4" data-content="Shortcut 1">
+								<a class="shortcut-grid" href="#">
+									<i class="fa fa-car"></i>
+								</a>
+							</li>
+							<li class="col-xs-4" data-content="Shortcut 2">
+								<a class="shortcut-grid" href="#">
+									<i class="fa fa-taxi"></i>
+								</a>
+							</li>
+							<li class="col-xs-4" data-content="Shortcut 3">
+								<a class="shortcut-grid" href="#">
+									<i class="fa fa-bus"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!--================================-->
+					<!--End shortcut buttons-->
+
+
+					<!--Menu-->
+					<!--================================-->
+					<div id="mainnav-menu-wrap">
+						<div class="nano">
+							<div class="nano-content">
+								<ul id="mainnav-menu" class="list-group">
+
+									<!--Category name-->
+{#									<li class="list-header">Link List</li>#}
+
+									<!--Menu list item-->
+{#                                    {% block page-menu %}#}
+                                    <li>
+                                        <a href="{% url 'index' %}">
+                                            <i class="fa fa-plane"></i>
+                                            <span class="menu-title">首页</span>
+                                        </a>
+                                    </li>
+{#									<li>#}
+{#										<a href="#">#}
+{#											<i class="fa fa-dashboard"></i>#}
+{#											<span class="menu-title">#}
+{#												<strong>系统巡检</strong>#}
+{#											</span>#}
+{#										</a>#}
+{#									</li>#}
+
+                                    <li class="active-sub">
+										<a href="#">
+											<i class="fa fa-th"></i>
+											<span class="menu-title">系统巡检</span>
+											<i class="arrow"></i>
+										</a>
+
+										<!--Submenu-->
+										<ul class="collapse in">
+											<li><a href="{% url 'auto_check' %}">自动巡检</a></li>
+											<li><a href="#">远程命令</a></li>
+											<li><a href="#">执行脚本</a></li>
+										</ul>
+									</li>
+
+
+                                    <li>
+										<a href="#">
+											<i class="fa fa-tag"></i>
+											<span class="menu-title">
+                                                <strong>DB2巡检</strong>
+											</span>
+										</a>
+									</li>
+                                    <li>
+										<a href="#">
+											<i class="fa fa-th"></i>
+											<span class="menu-title">ORACLE巡检</span>
+										</a>
+                                    </li>
+{#                                    {% endblock %}#}
+
+									<!--Menu list item-->
+{#									<li class="active-sub">#}
+{#										<a href="#">#}
+{#											<i class="fa fa-th"></i>#}
+{#											<span class="menu-title">主机管理</span>#}
+{#											<i class="arrow"></i>#}
+{#										</a>#}
+{##}
+{#										<!--Submenu-->#}
+{#										<ul class="collapse in">#}
+{#											<li><a href="{% url 'multitask_cmd' %}">批量命令</a></li>#}
+{#											<li class="active-link"><a href="{% url 'multitask_file' %}">批量文件</a></li>#}
+{#										</ul>#}
+{#									</li>#}
+
+{#									<li class="list-divider"></li>#}
+
+									<!--Category name-->
+
+								</ul>
+
+
+								<!--Widget-->
+								<!--================================-->
+								<div class="mainnav-widget">
+
+									<!-- Show the button on collapsed navigation -->
+									<div class="show-small">
+										<a href="#" data-toggle="menu-widget" data-target="#demo-wg-server">
+											<i class="fa fa-desktop"></i>
+										</a>
+									</div>
+
+									<!-- Hide the content on collapsed navigation -->
+
+								</div>
+								<!--================================-->
+								<!--End widget-->
+
+							</div>
+						</div>
+					</div>
+					<!--================================-->
+					<!--End menu-->
+
+				</div>
+			</nav>
+			<!--===================================================-->
+			<!--END MAIN NAVIGATION-->
+
+			<!--ASIDE-->
+			<!--===================================================-->
+			<aside id="aside-container">
+				<div id="aside">
+					<div class="nano">
+						<div class="nano-content">
+
+							<!--Nav tabs-->
+							<!--================================-->
+							<ul class="nav nav-tabs nav-justified">
+								<li class="active">
+									<a href="#demo-asd-tab-1" data-toggle="tab">
+										<i class="fa fa-comments"></i>
+										<span class="badge badge-purple">7</span>
+									</a>
+								</li>
+								<li>
+									<a href="#demo-asd-tab-2" data-toggle="tab">
+										<i class="fa fa-info-circle"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#demo-asd-tab-3" data-toggle="tab">
+										<i class="fa fa-wrench"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#demo-asd-tab-4" data-toggle="tab">
+										<i class="fa fa-shield"></i>
+										<span class="label label-success">New</span>
+									</a>
+								</li>
+							</ul>
+							<!--================================-->
+							<!--End nav tabs-->
+
+
+
+							<!-- Tabs Content -->
+							<!--================================-->
+							<div class="tab-content">
+
+								<!--First tab-->
+								<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+								<div class="tab-pane fade in active" id="demo-asd-tab-1">
+									<h4 class="pad-hor text-thin">
+										First tab
+									</h4>
+									<div class="pad-all">
+
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+									sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+									ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate
+									velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+									et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+
+									</div>
+
+								</div>
+								<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+								<!--End first tab-->
+
+
+								<!--Second tab-->
+								<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+								<div class="tab-pane fade" id="demo-asd-tab-2">
+									<h4 class="pad-hor text-thin">
+										Second tab
+									</h4>
+									<div class="pad-all">
+
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+									sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+									ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate
+									velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+									et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+
+									</div>
+								</div>
+								<!--End second tab-->
+								<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+								<!--Third tab-->
+								<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+								<div class="tab-pane fade" id="demo-asd-tab-3">
+									<h4 class="pad-hor text-thin">
+										Third tab
+									</h4>
+									<div class="pad-all">
+
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+									sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+									ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate
+									velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+									et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+
+									</div>
+
+								</div>
+								<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+								<!--Third tab-->
+
+								<!--Fourth tab-->
+								<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+								<div class="tab-pane fade" id="demo-asd-tab-4">
+									<h4 class="pad-hor text-thin">
+										Fourth tab
+									</h4>
+									<div class="pad-all">
+
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+									sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+									Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+									ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate
+									velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
+									et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+
+									</div>
+
+								</div>
+								<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+								<!--Third tab (Settings)-->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</aside>
+			<!--===================================================-->
+			<!--END ASIDE-->
+
+		</div>
+
+
+
+        <!-- FOOTER -->
+        <!--===================================================-->
+        <footer id="footer">
+
+            <!-- Visible when footer positions are fixed -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <div class="show-fixed pull-right">
+                <ul class="footer-list list-inline">
+                    <li>
+                        <p class="text-sm">SEO Proggres</p>
+                        <div class="progress progress-sm progress-light-base">
+                            <div style="width: 80%" class="progress-bar progress-bar-danger"></div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <p class="text-sm">Online Tutorial</p>
+                        <div class="progress progress-sm progress-light-base">
+                            <div style="width: 80%" class="progress-bar progress-bar-primary"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="btn btn-sm btn-dark btn-active-success">Checkout</button>
+                    </li>
+                </ul>
+            </div>
+
+
+
+            <!-- Visible when footer positions are static -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <div class="hide-fixed pull-right pad-rgt">Currently v2.2.2</div>
+
+
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Remove the class name "show-fixed" and "hide-fixed" to make the content always appears. -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <p class="pad-lft">&#0169; 2020 Your Company</p>
+
+
+
+        </footer>
+        <!--===================================================-->
+        <!-- END FOOTER -->
+
+
+        <!-- SCROLL TOP BUTTON -->
+        <!--===================================================-->
+        <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+        <!--===================================================-->
+
+
+
+	</div>
+{% endblock %}

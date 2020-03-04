@@ -1,0 +1,12 @@
+ssh ---> git@github.com:zy6103/opstool.git
+https ---> https://github.com/zy6103/opstool.git
+…or create a new repository on the command line
+echo "# opstool" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:zy6103/opstool.git
+git push -u origin master
+…or push an existing repository from the command line
+git remote add origin git@github.com:zy6103/opstool.git
+git push -u origin master
