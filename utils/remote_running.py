@@ -26,5 +26,10 @@ class RemoteHost(object):
         out,err = stdout.read().decode(),stderr.read().decode()
         mess = out if out else err
         return mess
+    def check(self):
+        self.put_file()
+        out = self.run_cmd()
+        self.get_file()
+        return out
     def close(self):
         self.trans.close()
